@@ -1,0 +1,11 @@
+{
+  "domains": {
+    "establishment": { "baseURL": "https://establishment-e2e.example.gosi.ins" },
+    "individual":    { "baseURL": "https://individual-e2e.example.gosi.ins" },
+    "public":        { "baseURL": "https://public-e2e.example.gosi.ins" },
+    "demo":          { "baseURL": "http://localhost:4173" }
+  },
+  "locale": "en-US",
+  "ignoreHTTPSErrors": true,
+  "timeouts": { "test": 120000, "navigation": 45000 }
+}

@@ -1,0 +1,11 @@
+{
+  "domains": {
+    "establishment": { "baseURL": "https://establishment-sit.example.gosi.ins" },
+    "individual":    { "baseURL": "https://individual-sit.example.gosi.ins" },
+    "public":        { "baseURL": "https://public-sit.example.gosi.ins" },
+    "demo":          { "baseURL": "http://localhost:4173" }
+  },
+  "locale": "en-US",
+  "ignoreHTTPSErrors": true,
+  "timeouts": { "test": 60000, "navigation": 45000 }
+}

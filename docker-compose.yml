@@ -1,0 +1,22 @@
+services:
+  tests:
+    build:
+      context: .
+      args:
+        PW_IMAGE: ${PW_IMAGE:-mcr.microsoft.com/playwright:v1.55.0-noble}
+        NPM_REGISTRY: ${NPM_REGISTRY:-}
+    image: playwright-ui-automation:latest
+    ipc: host          # Chromium needs shared memory
+    init: true
+    env_file:
+      - path: .env
+        required: false
+      - path: .env.${ENV:-dev}
+        required: false
+    environment:
+      ENV: ${ENV:-dev}
+      DOMAIN: ${DOMAIN:-}
+      BROWSER: ${BROWSER:-chromium}
+      WORKERS: ${WORKERS:-4}
+    volumes:
+      - ./reports:/app/reports   # HTML / JUnit / traces come back to the host

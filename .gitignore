@@ -1,0 +1,10 @@
+node_modules/
+reports/
+.auth/
+.env
+.env.*
+!.env.example
+certs/*.crt
+certs/*.pem
+dist/
+.DS_Store

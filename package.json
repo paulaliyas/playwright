@@ -1,0 +1,36 @@
+{
+  "name": "playwright-ui-automation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Playwright UI automation — multi-domain, multi-environment, Dockerised",
+  "scripts": {
+    "test": "playwright test",
+    "test:dev": "cross-env ENV=dev playwright test",
+    "test:sit": "cross-env ENV=sit playwright test",
+    "test:uat": "cross-env ENV=uat playwright test",
+    "test:e2e": "cross-env ENV=e2e playwright test",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:headed": "cross-env HEADLESS=false playwright test",
+    "test:establishment": "cross-env DOMAIN=establishment playwright test",
+    "test:individual": "cross-env DOMAIN=individual playwright test",
+    "test:public": "cross-env DOMAIN=public playwright test",
+    "test:demo": "cross-env DOMAIN=demo playwright test",
+    "test:demo:headed": "cross-env DOMAIN=demo HEADLESS=false playwright test --workers=1",
+    "report": "playwright show-report reports/html",
+    "codegen": "playwright codegen",
+    "typecheck": "tsc --noEmit",
+    "docker:build": "docker compose build",
+    "docker:test": "docker compose run --rm tests"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.55.0",
+    "@types/node": "^22.7.0",
+    "@types/oracledb": "^6.5.0",
+    "cross-env": "^7.0.3",
+    "typescript": "^5.6.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "oracledb": "^6.9.0"
+  }
+}

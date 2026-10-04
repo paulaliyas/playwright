@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo Todos</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #f5f5f5; margin: 0; padding: 40px 16px; }
+    main { max-width: 480px; margin: 0 auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.1); padding: 24px; }
+    h1 { margin: 0 0 16px; text-align: center; color: #b83f45; font-weight: 300; font-size: 48px; }
+    input.new-todo { width: 100%; box-sizing: border-box; padding: 12px; font-size: 18px; border: 1px solid #ddd; border-radius: 4px; }
+    ul { list-style: none; padding: 0; margin: 16px 0; }
+    li { display: flex; align-items: center; gap: 10px; padding: 10px 4px; border-bottom: 1px solid #eee; font-size: 18px; }
+    li.completed label { text-decoration: line-through; color: #aaa; }
+    footer { color: #777; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>todos</h1>
+    <input class="new-todo" placeholder="What needs to be done?" autofocus>
+    <ul class="todo-list"></ul>
+    <footer><span data-testid="todo-count"></span></footer>
+  </main>
+  <script>
+    const input = document.querySelector('.new-todo');
+    const list = document.querySelector('.todo-list');
+    const count = document.querySelector('[data-testid="todo-count"]');
+    const todos = [];
+
+    function render() {
+      list.innerHTML = '';
+      todos.forEach((todo) => {
+        const li = document.createElement('li');
+        li.dataset.testid = 'todo-item';
+        li.className = todo.done ? 'completed' : '';
+        const box = document.createElement('input');
+        box.type = 'checkbox';
+        box.checked = todo.done;
+        box.addEventListener('change', () => { todo.done = box.checked; render(); });
+        const label = document.createElement('label');
+        label.textContent = todo.text;
+        li.append(box, label);
+        list.append(li);
+      });
+      const left = todos.filter((t) => !t.done).length;
+      count.textContent = todos.length ? `${left} ${left === 1 ? 'item' : 'items'} left` : '';
+    }
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter' || !input.value.trim()) return;
+      todos.push({ text: input.value.trim(), done: false });
+      input.value = '';
+      render();
+    });
+  </script>
+</body>
+</html>
